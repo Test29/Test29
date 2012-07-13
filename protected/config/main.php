@@ -10,12 +10,13 @@ return array(
 	'name'=>'AyBox',
 
 	// preloading 'log' component
-	'preload'=>array('log'),
+	'preload'=>array('log','bootstrap',),
 
 	// autoloading model and component classes
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+		'application.widgets.bootstrap.*'
 	),
 
 	'modules'=>array(
@@ -26,15 +27,22 @@ return array(
 			'password'=>'aybee',
 		 	// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('127.0.0.1','::1'),
-		),
+		    'generatorPaths'=>array(
+            'ext.bootstrap.gii'),
+	    ),
 		
 	),
 
 	// application components
 	'components'=>array(
+	'bootstrap'=>array('class'=>
+                        'application.extensions.bootstrap.components.Bootstrap',
+                        'responsiveCss'=>true,
+		),
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
+		 
 		),
 		// uncomment the following to enable URLs in path-format
 		
@@ -85,6 +93,6 @@ return array(
 	// using Yii::app()->params['paramName']
 	'params'=>array(
 		// this is used in contact page
-		'adminEmail'=>'webmaster@example.com',
+		'adminEmail'=>'aybee.agency@gmail.com',
 	),
 );
