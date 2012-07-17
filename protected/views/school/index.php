@@ -9,9 +9,14 @@ $this->menu=array(
 );
 ?>
 
-<h1>Schools</h1>
+<h1>Ecole</h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,
-	'itemView'=>'_view',
+	'itemView'=>'_view',	
+	'sortableAttributes'=>array(
+        'name'=>'cdvfvdfsfvfvsdv','picture_id'=>'photo'       
+    ),
 )); ?>
+
+

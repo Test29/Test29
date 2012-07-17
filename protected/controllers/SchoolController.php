@@ -125,12 +125,16 @@ class SchoolController extends Controller
 	/**
 	 * Lists all models.
 	 */
+
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('School');
+		$model=new School();
+		$url = $model->selectUrl();
+		$dataProvider=new CActiveDataProvider('School');        
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
-		));
+			'url'=>$url,
+		));		
 	}
 
 	/**

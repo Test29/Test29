@@ -20,8 +20,7 @@ return array(
 	),
 
 	'modules'=>array(
-		// uncomment the following to enable the Gii tool
-		
+		// uncomment the following to enable the Gii tool		
 		'gii'=>array(
 			'class'=>'system.gii.GiiModule',
 			'password'=>'aybee',
@@ -35,6 +34,8 @@ return array(
 
 	// application components
 	'components'=>array(
+	
+
 	'bootstrap'=>array('class'=>
                         'application.extensions.bootstrap.components.Bootstrap',
                         'responsiveCss'=>true,
@@ -42,6 +43,8 @@ return array(
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
+
+	
 		 
 		),
 		// uncomment the following to enable URLs in path-format

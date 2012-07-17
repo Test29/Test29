@@ -1,16 +1,17 @@
-<?php $this->pageTitle=Yii::app()->name; ?>
+<?php $this->beginWidget('bootstrap.widgets.BootHero', array(
+    'heading'=>'AyBox',
+)); ?>
+ 
+    <p>Venez retrouver votre école et partager sur AyBox</nouve></p>
+    <p><?php $this->widget('bootstrap.widgets.BootButton', array(
+        'type'=>'primary',
+        'size'=>'large',
+        'label'=>'Decouvrir',
+    )); ?></p>
+    
+    <p>Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un peintre anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte.</p>
+ 
+<?php $this->endWidget(); ?>
 
-<h1>Welcome to <i><?php echo CHtml::encode(Yii::app()->name); ?></i></h1>
+<a href="/soluoseo/index.php" onclick=""><img class="logo" src="<?php echo Yii::app()->baseUrl ?>/images/facebook.png" alt="logo_Facebook_connect"/></a>
 
-<p>Congratulations! You have successfully created your Yii application.</p>
-
-<p>You may change the content of this page by modifying the following two files:</p>
-<ul>
-	<li>View file: <tt><?php echo __FILE__; ?></tt></li>
-	<li>Layout file: <tt><?php echo $this->getLayoutFile('main'); ?></tt></li>
-</ul>
-
-<p>For more details on how to further develop this application, please read
-the <a href="http://www.yiiframework.com/doc/">documentation</a>.
-Feel free to ask in the <a href="http://www.yiiframework.com/forum/">forum</a>,
-should you have any questions.</p>

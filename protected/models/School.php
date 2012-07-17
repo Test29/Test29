@@ -73,11 +73,11 @@ class School extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Name',
-			'date_add' => 'Date Add',
-			'date_update' => 'Date Update',
+			'name' => 'Nom',
+			'date_add' => 'Date de création',
+			'date_update' => 'Date de mise à jour',
 			'description' => 'Description',
-			'picture_id' => 'Picture',
+			'picture_id' => 'Photo',
 		);
 	}
 
@@ -102,5 +102,15 @@ class School extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+
+	public function selectUrl()
+	{		
+		$user = Yii::app()->db->createCommand()
+        ->select('url')
+        ->from('picture')       
+        ->where('id=:id', array(':id'=>2))
+        ->queryRow();
+		return $user;
 	}
 }
