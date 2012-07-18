@@ -13,17 +13,20 @@ $this->menu=array(
 );
 ?>
 
-<h1>View School #<?php echo $model->id; ?></h1>
+
+ 
+<img src="<?php echo Yii::app()->baseUrl ?><?php echo $model->picture->url; ?>" alt="picture_"/>	
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(		
-		'name',
-		'date_add',
-		'date_update',
-		'description',
-		'picture_id',
+		'name',		
+		'description',		
 	),
 )); ?>
-
-
+<br />
+<h3>Promotions de <?php echo $model->name; ?></h3>
+<br />
+<?php foreach ($model->promotions as $promotion) { ?>
+<a href="<?php echo Yii::app()->baseUrl ?>/index.php/promotion/<?php echo $promotion->id; ?>"><?php echo $promotion->name; ?></a><br /><br />
+<?php } ?>

@@ -43,7 +43,7 @@ class School extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, date_add, picture_id', 'required'),
+			array('name, description', 'required'),
 			array('picture_id', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>90),
 			array('date_update, description', 'safe'),
@@ -102,15 +102,5 @@ class School extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
-	}
-
-	public function selectUrl()
-	{		
-		$user = Yii::app()->db->createCommand()
-        ->select('url')
-        ->from('picture')       
-        ->where('id=:id', array(':id'=>2))
-        ->queryRow();
-		return $user;
 	}
 }

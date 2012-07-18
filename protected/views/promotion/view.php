@@ -13,16 +13,18 @@ $this->menu=array(
 );
 ?>
 
-<h1>View Promotion #<?php echo $model->id; ?></h1>
+<h1>Promotion <?php echo $model->name; ?> de <?php echo $model->school->name; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
-	'attributes'=>array(
-		'id',
+	'attributes'=>array(		
 		'name',
 		'year',
-		'date_add',
-		'date_update',
-		'school_id',
 	),
 )); ?>
+<br />
+<h3>Etudiants de <?php echo $model->name; ?></h3>
+<br />
+<?php foreach ($model->students as $student) { ?>
+<a href="<?php echo Yii::app()->baseUrl ?>/index.php/student/<?php echo $student->id; ?>"><?php echo $student->login; ?></a><br /><br />
+<?php } ?>

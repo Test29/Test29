@@ -5,26 +5,12 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
-
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'name'); ?>
 		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>90)); ?>
-		<?php echo $form->error($model,'name'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'date_add'); ?>
-		<?php echo $form->textField($model,'date_add'); ?>
-		<?php echo $form->error($model,'date_add'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'date_update'); ?>
-		<?php echo $form->textField($model,'date_update'); ?>
-		<?php echo $form->error($model,'date_update'); ?>
+		<?php echo $form->error($model,'name'); ?>jf
 	</div>
 
 	<div class="row">

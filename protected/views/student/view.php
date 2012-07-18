@@ -17,17 +17,11 @@ $this->menu=array(
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
-	'attributes'=>array(
-		'id',
+	'attributes'=>array(		
 		'login',
 		'password',
 		'dob',
-		'email',
-		'date_add',
+		'email',	
 		'gender',
-		'status',
-		'right',
-		'promotion_id',
-		'profil_id',
-	),
+		'status', ),
 )); ?>

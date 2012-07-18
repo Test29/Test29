@@ -13,5 +13,4 @@
  
 <?php $this->endWidget(); ?>
 
-<a href="/soluoseo/index.php" onclick=""><img class="logo" src="<?php echo Yii::app()->baseUrl ?>/images/facebook.png" alt="logo_Facebook_connect"/></a>
 

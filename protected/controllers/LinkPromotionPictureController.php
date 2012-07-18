@@ -1,6 +1,6 @@
 <?php
 
-class SchoolController extends Controller
+class LinkPromotionPictureController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -61,14 +61,14 @@ class SchoolController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new School;
+		$model=new LinkPromotionPicture;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['School']))
+		if(isset($_POST['LinkPromotionPicture']))
 		{
-			$model->attributes=$_POST['School'];
+			$model->attributes=$_POST['LinkPromotionPicture'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -90,9 +90,9 @@ class SchoolController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['School']))
+		if(isset($_POST['LinkPromotionPicture']))
 		{
-			$model->attributes=$_POST['School'];
+			$model->attributes=$_POST['LinkPromotionPicture'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -125,13 +125,12 @@ class SchoolController extends Controller
 	/**
 	 * Lists all models.
 	 */
-
 	public function actionIndex()
-	{		
-		$dataProvider=new CActiveDataProvider('School');        
+	{
+		$dataProvider=new CActiveDataProvider('LinkPromotionPicture');
 		$this->render('index',array(
-			'dataProvider'=>$dataProvider,		
-		));		
+			'dataProvider'=>$dataProvider,
+		));
 	}
 
 	/**
@@ -139,10 +138,10 @@ class SchoolController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new School('search');
+		$model=new LinkPromotionPicture('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['School']))
-			$model->attributes=$_GET['School'];
+		if(isset($_GET['LinkPromotionPicture']))
+			$model->attributes=$_GET['LinkPromotionPicture'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -156,7 +155,7 @@ class SchoolController extends Controller
 	 */
 	public function loadModel($id)
 	{
-		$model=School::model()->findByPk($id);
+		$model=LinkPromotionPicture::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -168,7 +167,7 @@ class SchoolController extends Controller
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='school-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='link-promotion-picture-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
