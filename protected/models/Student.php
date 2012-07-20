@@ -79,6 +79,8 @@ class Student extends CActiveRecord
 			'messages1' => array(self::HAS_MANY, 'Message', 'student_id_send'),
 			'promotion' => array(self::BELONGS_TO, 'Promotion', 'promotion_id'),
 			'profil' => array(self::BELONGS_TO, 'Picture', 'profil_id'),
+			'school' => array(self::BELONGS_TO, 'School', 'promotion_id'),
+
 		);
 	}
 

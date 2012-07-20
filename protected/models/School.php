@@ -65,7 +65,7 @@ class School extends CActiveRecord
 			'picture' => array(self::BELONGS_TO, 'Picture', 'picture_id'),			
 		
 			'studentschool' => array(self::HAS_MANY, 'Student', 'promotion_id'),
-			'students' => array(self::HAS_MANY, 'Promotion', 'school_id', 
+			'student' => array(self::HAS_MANY, 'Student', 'school_id', 
             'through' => 'studentschool'),	
 		);
 	}

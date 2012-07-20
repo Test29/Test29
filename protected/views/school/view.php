@@ -31,6 +31,5 @@ $this->menu=array(
 		<a href="<?php echo Yii::app()->baseUrl ?>/index.php/promotion/<?php echo $promotion->id; ?>"><?php echo $promotion->name; ?></a><br /><br />
 <?php } ?>
 <h3>Etudiants de <?php echo $model->name; ?></h3>				
-<?php foreach ($model->studentschool as $student) { ?>
-	<?php var_dump($student) or die(); ?>
-<?php } ?>
+
+
