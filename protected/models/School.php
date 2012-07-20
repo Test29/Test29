@@ -62,7 +62,11 @@ class School extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'promotions' => array(self::HAS_MANY, 'Promotion', 'school_id'),
-			'picture' => array(self::BELONGS_TO, 'Picture', 'picture_id'),
+			'picture' => array(self::BELONGS_TO, 'Picture', 'picture_id'),			
+		
+			'studentschool' => array(self::HAS_MANY, 'Student', 'promotion_id'),
+			'students' => array(self::HAS_MANY, 'Promotion', 'school_id', 
+            'through' => 'studentschool'),	
 		);
 	}
 

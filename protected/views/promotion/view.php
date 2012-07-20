@@ -13,6 +13,11 @@ $this->menu=array(
 );
 ?>
 
+
+<?php foreach ($model->promopict as $promopict) { ?>
+		<img src="<?php echo Yii::app()->baseUrl ?><?php echo $promopict->picture->url; ?>" alt="promo_picture"/><br />
+<?php } ?>
+              
 <h1>Promotion <?php echo $model->name; ?> de <?php echo $model->school->name; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(

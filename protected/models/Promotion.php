@@ -63,9 +63,11 @@ class Promotion extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'linkPromotionPictures' => array(self::HAS_MANY, 'LinkPromotionPicture', 'promotion_id'),
+			'promopict' => array(self::HAS_MANY, 'LinkPromotionPicture', 'promotion_id'),
 			'school' => array(self::BELONGS_TO, 'School', 'school_id'),
 			'students' => array(self::HAS_MANY, 'Student', 'promotion_id'),			
+            'pictures' => array(self::HAS_MANY, 'Picture', 'picture_id', 
+            'through' => 'promopict'),			
 		);
 	}
 
