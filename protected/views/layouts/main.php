@@ -36,7 +36,8 @@
   		 	 <li class="active">
    				 <a href="<?php echo Yii::app()->baseUrl ?>/index.php">Home</a>
   		 	 </li>
-  	 	 <li><a href="<?php echo Yii::app()->baseUrl ?>/index.php/school">Ecoles</a></li>  	   		
+  	 	 <li><a href="<?php echo Yii::app()->baseUrl ?>/index.php/school">Ecoles</a></li>  	   
+  	 	 <li><a href="<?php echo Yii::app()->baseUrl ?>/index.php/student/create">Inscription</a></li>		
    		 </ul>
     </div>     
     	</div>
