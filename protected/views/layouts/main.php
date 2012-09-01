@@ -21,7 +21,7 @@
 
 <div class="navbar">
     <div class="navbar-inner">
-    	<div class="container">     
+    	<div class="container">
    		 <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
     		<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
    			 <span class="icon-bar"></span>
@@ -42,17 +42,21 @@
     </div>     
     	</div>
     </div>
-</div>	
-	<?php if(isset($this->breadcrumbs)):?>
-		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
-			'links'=>$this->breadcrumbs,
-		)); ?><!-- breadcrumbs -->
-	<?php endif?>
-
-	<?php echo $content; ?>
-	<div class="clear"></div>
-	<div id="footer">		
+</div>
+<div class="container">
+	<div class="row-fluid">
+		<?php if(isset($this->breadcrumbs)):?>
+			<?php $this->widget('zii.widgets.CBreadcrumbs', array(
+				'links'=>$this->breadcrumbs,
+			)); ?><!-- breadcrumbs -->
+		<?php endif?>
+	
+		<?php echo $content; ?>
 	</div>
+</div>
+<div class="clear"></div>
+<div id="footer">		
+</div>
 </div>
 </body>
 </html>
