@@ -31,7 +31,11 @@ return array(
 	    ),
 		
 	),
-
+	
+	'controllerMap'=>array(
+        'min'=>'ext.minScript.controllers.ExtMinScriptController',
+    ),
+    
 	// application components
 	'components'=>array(
 	
@@ -62,7 +66,10 @@ return array(
 			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
 		),*/
 		// uncomment the following to use a MySQL database
-		
+		'browser' => array(
+            'class' => 'ext.Browser.CBrowserComponent',
+        ),
+        
 		'db'=>array(
 			'connectionString' => 'mysql:host=localhost;dbname=aybox',
 			'emulatePrepare' => true,
