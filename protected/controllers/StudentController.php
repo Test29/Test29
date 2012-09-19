@@ -58,7 +58,8 @@ class StudentController extends Controller
 	
 	public function actionConnect()
 	{
-		if (isset($_POST['connect'])) {
+		if (isset($_POST['connect']))
+		{
 			$studentDAO = new StudentDAO();
 			$aLogin = $studentDAO->getLogin($_POST['connect']['login']);
 			$aMdp = $studentDAO->getPass($_POST['connect']['login']);
@@ -77,4 +78,15 @@ class StudentController extends Controller
 			$this->render('connect');
 		}
 	}
+	
+	public function actionDeconnect()
+	{
+		if (isset($_SESSION['id']))
+		{
+			$studentDAO = new StudentDAO();
+			$studentDAO->sessionDelete();
+			$this->redirect(array('/school/index'));
+		}
+	}
+	
 }

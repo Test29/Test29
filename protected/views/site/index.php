@@ -1,10 +1,10 @@
 <div class="span10">
-	<?php $this->beginWidget('bootstrap.widgets.BootHero', array(
+	<?php $this->beginWidget('bootstrap.widgets.TbHeroUnit', array(
 	    'heading'=>'AyBox',
 	)); ?>
 	 
 	    <p>Venez retrouver votre école et partager sur AyBox</p>
-	    <p><?php $this->widget('bootstrap.widgets.BootButton', array(
+	    <p><?php $this->widget('bootstrap.widgets.TbButton', array(
 	        'type'=>'primary',
 	        'size'=>'large',
 	        'label'=>'Decouvrir',

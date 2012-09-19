@@ -19,7 +19,7 @@
 
 <body>
 
-<div class="navbar">
+<div class="navbar navbar-inverse">
     <div class="navbar-inner">
     	<div class="container">
    		 <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
@@ -31,18 +31,27 @@
     		<!-- Be sure to leave the brand out there if you want it shown -->
    			 <a class="brand" href="<?php echo Yii::app()->baseUrl ?>/index.php">AyBox</a>     
     		<!-- Everything you want hidden at 940px or less, place within here -->
-		    <div class="nav-collapse">    	
-		    	  <ul class="nav">
-		  		 	 <li class="active">
-		   				 <a href="<?php echo Yii::app()->baseUrl ?>/index.php">Home</a>
-		  		 	 </li>
-		  	 	 <li><a href="<?php echo Yii::app()->baseUrl ?>/index.php/school">Ecoles</a></li>  	   
-		  	 	 <li><a href="<?php echo Yii::app()->baseUrl ?>/index.php/student/create">Inscription</a></li>		
-		   		 </ul>
+		    <div class="nav-collapse">
+		    	<ul class="nav">
+		  		 	<li class="active">
+		   				<a href="<?php echo Yii::app()->baseUrl ?>/index.php">Home</a>
+		  		 	</li>
+		  	 		<li><a href="<?php echo Yii::app()->baseUrl ?>/index.php/school">Ecoles</a></li>  	   
+		  	 		<li><a href="<?php echo Yii::app()->baseUrl ?>/index.php/student/create">Inscription</a></li>		
+		   		</ul>
+		   		<?php if (isset($_SESSION['id']))
+				{ ?>
+		   		<ul class="nav pull-right">
+		   			<li class="divider-vertical"></li>
+					<li>
+						<a href="<?php echo Yii::app()->baseUrl ?>/index.php/student/deconnect">Se déconnecter</a>
+					</li>
+				</ul>
+				<?php } ?>
 		    </div>     
     	</div>
     </div>
-</div>	
+</div>
 	<?php if(isset($this->breadcrumbs)):?>
 		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
 			'links'=>$this->breadcrumbs,
@@ -52,7 +61,7 @@
 		{ ?>
 			<div class="row-fluid">
 				<div class="span3">
-					<form id="form_connect" method="post" class="well form-horizontal" action="connect">					
+					<form id="form_connect" method="post" class="well form-horizontal" action="<?php echo Yii::app()->baseUrl ?>/index.php/student/connect">					
 						<div class="control-group">
 							<label for="login" class="control-label">Login</label>
 							<div class="controls">
@@ -65,14 +74,14 @@
 								<input type="text" id="password" name="connect[password]" placeholder="Entrez votre mot de passe" />
 							</div>
 						</div>
-						<?php $this->widget('bootstrap.widgets.BootButton', array(
+						<?php $this->widget('bootstrap.widgets.TbButton', array(
 							 	'buttonType'=>'submit', 
 							 	'icon'=>'ok white',
 							    'label'=>'S\'identifier',
 							    'type'=>'success',
 							    'size'=>'large')); 
 						?>
-						<?php $this->widget('bootstrap.widgets.BootButton', array(
+						<?php $this->widget('bootstrap.widgets.TbButton', array(
 							 	'buttonType'=>'submit', 
 							 	'icon'=>'ok white',
 							    'label'=>'S\'inscrire',
