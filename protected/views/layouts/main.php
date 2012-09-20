@@ -34,9 +34,9 @@
 		    <div class="nav-collapse">
 		    	<ul class="nav">
 		  		 	<li class="active">
-		   				<a href="<?php echo Yii::app()->baseUrl ?>/index.php">Home</a>
+		   				<a href="<?php echo Yii::app()->baseUrl ?>/index.php">Accueil</a>
 		  		 	</li>
-		  	 		<li><a href="<?php echo Yii::app()->baseUrl ?>/index.php/school">Ecoles</a></li>  	   
+		  	 		<li><a href="<?php echo Yii::app()->baseUrl ?>/index.php/school">&Eacute;coles</a></li>  	   
 		  	 		<li><a href="<?php echo Yii::app()->baseUrl ?>/index.php/student/create">Inscription</a></li>		
 		   		</ul>
 		   		<?php if (isset($_SESSION['id']))
@@ -47,6 +47,12 @@
 						<a href="<?php echo Yii::app()->baseUrl ?>/index.php/student/deconnect">Se déconnecter</a>
 					</li>
 				</ul>
+				<?php } else { ?>
+					<form id="form_connect" method="post" class="navbar-form form-horizontal pull-right" action="<?php echo Yii::app()->baseUrl ?>/index.php/student/connect">					
+						<input type="text" id="login" class="span2" name="connect[login]" value="<?php if (isset($_POST['login'])){echo $_POST['login'];} ?>" placeholder="Identifiant" />
+						<input type="password" id="password" class="span2" name="connect[password]" placeholder="Mot de passe" />
+						<button type="submit" class="btn btn-success">S'identifier</button>
+					</form>
 				<?php } ?>
 		    </div>     
     	</div>
@@ -57,43 +63,7 @@
 			'links'=>$this->breadcrumbs,
 		)); ?><!-- breadcrumbs -->
 	<?php endif?>
-	<?php if (!isset($_SESSION['id']))
-		{ ?>
-			<div class="row-fluid">
-				<div class="span3">
-					<form id="form_connect" method="post" class="well form-horizontal" action="<?php echo Yii::app()->baseUrl ?>/index.php/student/connect">					
-						<div class="control-group">
-							<label for="login" class="control-label">Login</label>
-							<div class="controls">
-								<input type="text" id="login" name="connect[login]" value="<?php if (isset($_POST['login'])){echo $_POST['login'];} ?>" placeholder="Entrez votre login" />
-							</div>
-						</div>
-						<div class="control-group">
-							<label for="password" class="control-label">Password</label>
-							<div class="controls">
-								<input type="text" id="password" name="connect[password]" placeholder="Entrez votre mot de passe" />
-							</div>
-						</div>
-						<?php $this->widget('bootstrap.widgets.TbButton', array(
-							 	'buttonType'=>'submit', 
-							 	'icon'=>'ok white',
-							    'label'=>'S\'identifier',
-							    'type'=>'success',
-							    'size'=>'large')); 
-						?>
-						<?php $this->widget('bootstrap.widgets.TbButton', array(
-							 	'buttonType'=>'submit', 
-							 	'icon'=>'ok white',
-							    'label'=>'S\'inscrire',
-							    'type'=>'primary',
-							    'size'=>'large',
-								'url'=>array('/student/create'))); 
-						?>
-					</form>
-				</div>
-			</div>
-	<?php }
-	else { ?>
+	<?php if (isset($_SESSION['id'])){ ?>
 		<h4>Bienvenue, <?php echo $_SESSION['login'] ?></h4>
 	<?php } ?>
 	<div class="container">
