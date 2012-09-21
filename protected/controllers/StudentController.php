@@ -31,7 +31,7 @@ class StudentController extends Controller
 		if (isset($_POST['student'])) {
 			// si on a récupéré des données projet depuis un formulaire
 			$studentDAO = new StudentDAO();
-			$aErrorCreate = $studentDAO->validateStudent($_POST['student']);
+			//$aErrorCreate = $studentDAO->validateStudent($_POST['student']);
 			if (empty($aErrorCreate)) {
 				$ok = $studentDAO->insertStudent($_POST['student']);
 				if ($ok) {
@@ -41,9 +41,7 @@ class StudentController extends Controller
 				}
 			}
 		}
-		$this->render('create', array(
-			'aErrorCreate' => $aErrorCreate,
-		));
+		$this->render('create');
 	}
 	
 	public function actionUpdate($id){

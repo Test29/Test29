@@ -32,7 +32,7 @@ $this->breadcrumbs=array(
           <div class="controls">
             <?php $this->widget('zii.widgets.jui.CJuiDatePicker', array(
 	    								'name'=>'student[dob]',
-	    								'if'=>'student[dob]',
+	    								'id'=>'dob',
 	    								'language'=>'fr',
 									    'options'=>array(
 									    'dateFormat'=>'yy-mm-dd',

@@ -4,3 +4,4 @@ themes/classic/views/
 
 # Misc
 *.project
+/nbproject
