@@ -28,10 +28,11 @@ $this->breadcrumbs=array(
           </div>
         </div><div class="control-group">
           <!-- Text input-->
-          <label class="control-label" for="input01">Date de naissance</label>
+          <label class="control-label" for="dob">Date de naissance</label>
           <div class="controls">
             <?php $this->widget('zii.widgets.jui.CJuiDatePicker', array(
 	    								'name'=>'student[dob]',
+	    								'if'=>'student[dob]',
 	    								'language'=>'fr',
 									    'options'=>array(
 									    'dateFormat'=>'yy-mm-dd',

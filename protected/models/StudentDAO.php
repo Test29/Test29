@@ -36,7 +36,7 @@ class StudentDAO
 		':date_add'=>date("Y-m-d H:i:s"),
 		':gender'=>$aStudentData['gender'],
 		':status'=>$aStudentData['status'],
-		':right'=>$aStudentData['right'],
+		':right'=>'student',
 		':promotion_id'=>$aStudentData['promotion_id'],
 		':profil_id'=>$aStudentData['profl_id']));
 	}
