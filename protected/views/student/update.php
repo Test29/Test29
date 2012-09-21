@@ -68,24 +68,13 @@ $this->breadcrumbs=array(
         </div>
         <div class="control-group">
           <!-- Select Basic -->
-          <label class="control-label">&amp;Eacute;coles</label>
+          <label class="control-label">&Eacute;coles</label>
           <div class="controls">
             <select class="input-xlarge">
 		      <option>Enter</option>
 		      <option>Your</option>
 		      <option>Options</option>
 		      <option>Here!</option>
-      		</select>
-          </div>
-        </div>
-        <div class="control-group">
-          <!-- Select Basic -->
-          <label class="control-label">Droits</label>
-          <div class="controls">
-            <select class="input-xlarge">
-		      <option>Admin</option>
-		      <option>Responsable</option>
-		      <option>&Eacute;tudiants</option>
       		</select>
           </div>
         </div>

@@ -10,7 +10,7 @@ class StudentController extends Controller
 			$this->render('index');
 		}
 		else {
-			$this->redirect(array('site/connect'));
+			$this->redirect(array('student/connect'));
 		}
 	}
 	
@@ -27,9 +27,23 @@ class StudentController extends Controller
 	}
 	
 	public function actionCreate(){
-			$studentDAO = new StudentDAO();	
-			// on rend la vue
-			$this->render('create');
+		$aErrorCreate = array();
+		if (isset($_POST['student'])) {
+			// si on a récupéré des données projet depuis un formulaire
+			$studentDAO = new StudentDAO();
+			$aErrorCreate = $studentDAO->validateStudent($_POST['student']);
+			if (empty($aErrorCreate)) {
+				$ok = $studentDAO->insertStudent($_POST['student']);
+				if ($ok) {
+					// message utilisateur
+					Yii::app()->user->setFlash('info','Votre compte a bien été crée');
+					$this->redirect(array('index'));
+				}
+			}
+		}
+		$this->render('create', array(
+			'aErrorCreate' => $aErrorCreate,
+		));
 	}
 	
 	public function actionUpdate($id){
