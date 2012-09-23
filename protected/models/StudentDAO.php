@@ -44,7 +44,7 @@ class StudentDAO
         ':gender'=>$aStudentData['gender'],
         ':status'=>$aStudentData['status'],
         ':right'=>'student',
-        ':promotion_id'=>2,
+        ':promotion_id'=>1,
         ':profil_id'=>1));
     }
 
@@ -72,7 +72,7 @@ class StudentDAO
     {
         $aError= array();
         foreach ($aPost as $key => $value) {
-            if ((empty($value)) && ($key !== 'description'))
+            if (empty($value))
             {
                 $aError[$key]=  'Le champ '.$key.' est vide';
             }
