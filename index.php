@@ -11,4 +11,6 @@ defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL',3);
 
 session_start();
 require_once($yii);
+date_default_timezone_set('Europe/Paris');
 Yii::createWebApplication($config)->run();
+?>
