@@ -1,35 +1,13 @@
 <?php
 $this->breadcrumbs=array(
-	'Schools'=>array('index'),
-	$model->name,
-);
-
-$this->menu=array(
-	array('label'=>'List School', 'url'=>array('index')),
-	array('label'=>'Create School', 'url'=>array('create')),
-	array('label'=>'Update School', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete School', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage School', 'url'=>array('admin')),
+	'Schools'=>array('index')	
 );
 ?>
+<h2><?php echo $school['0']['name']; ?></h2>
+        <h4><?php echo $school['0']['date_add']; ?></h4>
+        <h4><?php echo $school['0']['date_update']; ?></h4>
+        <h4><?php echo $school['0']['description']; ?></h4>
 
-
- 
-<img src="<?php echo Yii::app()->baseUrl ?><?php echo $model->picture->url; ?>" alt="picture_"/>	
-
-<?php $this->widget('zii.widgets.CDetailView', array(
-	'data'=>$model,
-	'attributes'=>array(		
-		'name',		
-		'description',		
-	),
-)); ?>
-<br />
-<h3>Promotions de <?php echo $model->name; ?></h3>
-<br />
-<?php foreach ($model->promotions as $promotion) { ?>
-		<a href="<?php echo Yii::app()->baseUrl ?>/index.php/promotion/<?php echo $promotion->id; ?>"><?php echo $promotion->name; ?></a><br /><br />
+<?php foreach ($promotion as $key => $promotion) { ?>
+	<h3><?php echo CHtml::link($promotion['name'], array('/promotion/view', 'id'=>$promotion['id'])); ?></h3>			
 <?php } ?>
-<h3>Etudiants de <?php echo $model->name; ?></h3>				
-
-

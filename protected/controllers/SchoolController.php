@@ -4,14 +4,17 @@ class SchoolController extends Controller
 {
 	public function actionIndex(){
 		$schoolDAO = new SchoolDAO();
+                $schools = $schoolDAO->findAllSchool();
 		// on rend la vue
-		$this->render('index');
+		$this->render('index', array('schools'=>$schools));
 	}
 	
 	public function actionView($id){
 		$schoolDAO = new SchoolDAO();
+                $school = $schoolDAO->findSchool($id);
+                $promotion = $schoolDAO->findAllPromotionsBySchool($id);
 		// on rend la vue
-		$this->render('view');
+		$this->render('view', array('school'=>$school, 'promotion'=>$promotion));
 	}
 	
 	public function actionCreate($id){
