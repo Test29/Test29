@@ -4,7 +4,7 @@ class SchoolDAO
 {
 	public function findAllSchool($filter=array(), $sort=array())
     {
-		$sql = "SELECT * FROM `school`";
+		$sql = "SELECT * FROM `school` JOIN picture ON school.picture_id=picture.id";
 		$command = Yii::app()->db->createCommand($sql);
 		return $command->queryAll();
     }
