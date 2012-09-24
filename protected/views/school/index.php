@@ -1,8 +1,3 @@
-<?php
-$this->breadcrumbs=array(
-
-	'Schools')
-?>
 
 
 <?php if(Yii::app()->user->hasFlash('info')): ?>
@@ -26,10 +21,10 @@ $this->breadcrumbs=array(
     <p><?php echo $school['description']; ?></p>
     </div>
     </li>
-    </ul>			
+    </ul>
 <?php } ?>
 
 
 
-   
+
 

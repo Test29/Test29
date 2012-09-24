@@ -19,7 +19,7 @@ $this->breadcrumbs=array(
             <input class="span6" id="name" name="promotion[year]" placeholder="Entrez l'année de la promotion" type="text" value="<?php if (isset($_POST['promotion']['year'])){echo $_POST['promotion']['year'];} ?>" maxlength="4">
         </div>
     </div>
-    <input type="hidden" name="promotion[id]" value="<?php if (isset($_POST['promotion']['id'])){echo $_POST['promotion']['id'];} else if (isset($_GET['promotion']['id'])){echo $_GET['promotion']['id'];}?>"/>
+    <input type="hidden" name="promotion[id]" value="<?php if (isset($_POST['promotion']['id'])){echo $_POST['promotion']['id'];} else if (isset($_GET['id'])){echo $_GET['id'];}?>"/>
     <div class="control-group">
         <div class="controls">
                 <?php $this->widget('bootstrap.widgets.TbButton',

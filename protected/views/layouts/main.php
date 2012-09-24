@@ -35,12 +35,21 @@
                     <li class="active">
 			<a href="<?php echo Yii::app()->baseUrl ?>/index.php/school">&Eacute;coles</a>
                     </li>
+		    <li class="divider-vertical"></li>
                     <?php if (!isset($_SESSION['id']))
                     { ?>
                         <li><a href="<?php echo Yii::app()->baseUrl ?>/index.php/student/create">Inscription</a></li>
                     <?php } else { ?>
-			<li><a href="<?php echo Yii::app()->baseUrl ?>/index.php/student/view/<?php echo $_SESSION['id'] ?>"><?php echo $_SESSION['login'] ?></a></li>
-                        <li><a href="<?php echo Yii::app()->baseUrl ?>/index.php/student/update/<?php echo $_SESSION['id'] ?>">Modification du profil</a></li>
+			<li class="dropdown">
+			    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+				<i class="icon-cog icon-white"></i>
+				<b class="caret"></b>
+			    </a>
+			    <ul class="dropdown-menu">
+				<li><a href="<?php echo Yii::app()->baseUrl ?>/index.php/student/view/<?php echo $_SESSION['id'] ?>"><i class="icon-user"></i>&nbsp;<?php echo $_SESSION['login'] ?></a></li>
+				<li><a href="<?php echo Yii::app()->baseUrl ?>/index.php/student/update/<?php echo $_SESSION['id'] ?>"><i class="icon-wrench"></i>&nbsp;Modification du profil</a></li>
+			    </ul>
+			</li>
                     <?php } ?>
                 </ul>
                 <?php if (isset($_SESSION['id']))

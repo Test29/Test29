@@ -12,6 +12,16 @@ $this->breadcrumbs=array(
 	'Students'=>array('index')
 );
 ?>
+<?php if(Yii::app()->user->hasFlash('info')): ?>
+<div class="alert alert-success">
+    <?php echo Yii::app()->user->getFlash('info'); ?>
+</div>
+<?php endif; ?>
+<?php if(Yii::app()->user->hasFlash('error')): ?>
+<div class="alert alert-error">
+    <?php echo Yii::app()->user->getFlash('error'); ?>
+</div>
+<?php endif; ?>
 <div class="row-fluid">
     <div class="span6">
         <div class="well">
@@ -23,7 +33,7 @@ $this->breadcrumbs=array(
         <div class="well">
             <h5>Né le : <?php echo $student['0']['dob'] ?></h5>
             <h5><?php echo $student['0']['email'] ?></h5>
-            <h5><?php echo $status; ?></h5>            
+            <h5><?php echo $status; ?></h5>
         </div>
     </div>
 </div>
@@ -38,5 +48,5 @@ $this->breadcrumbs=array(
              <button class="btn btn-primary">Envoyer un message</button>
         </div>
     </div>
-</div>     
+</div>
 
