@@ -4,25 +4,34 @@ class SchoolController extends Controller
 {
 	public function actionIndex(){
 		$schoolDAO = new SchoolDAO();
-                $schools = $schoolDAO->findAllSchool();
 		// on rend la vue
-		$this->render('index', array('schools'=>$schools));
+		$this->render('index');
 	}
-	
+
 	public function actionView($id){
 		$schoolDAO = new SchoolDAO();
-                $school = $schoolDAO->findSchool($id);
-                $promotion = $schoolDAO->findAllPromotionsBySchool($id);
 		// on rend la vue
-		$this->render('view', array('school'=>$school, 'promotion'=>$promotion));
+		$this->render('view');
 	}
-	
-	public function actionCreate($id){
-		$schoolDAO = new SchoolDAO();
-		// on rend la vue
-		$this->render('create');
+
+	public function actionCreate(){
+            $aErrorCreate = array();
+            if (isset($_POST['school'])) {
+                    $schoolDAO = new SchoolDAO();
+                    $aErrorCreate = $schoolDAO->validateSchool($_POST['school']);
+                    if (empty($aErrorCreate)) {
+                        $ok = $schoolDAO->insertSchool($_POST['school']);
+                        if ($ok) {
+                            // message utilisateur
+                            Yii::app()->user->setFlash('info','L\'&eacute;cole a bien été crée');
+                            $this->redirect(array('/school/index'));
+                        }
+                    }
+            }
+            $this->render('create',array(
+                            'aErrorCreate' => $aErrorCreate,));
 	}
-	
+
 	public function actionUpdate($id){
 		if (isset($_SESSION['id']))
 		{
@@ -34,7 +43,7 @@ class SchoolController extends Controller
 			$this->redirect(array('/student/connect'));
 		}
 	}
-	
+
 	public function actionDelete($id){
 		$schoolDAO = new SchoolDAO();
 		// on rend la vue
