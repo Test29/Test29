@@ -2,7 +2,7 @@
 <h1>Modification d'une &Eacute;cole</h1>
 <form id="form" method="post" class="well form-horizontal" action="update">
     <div class="control-group <?php if (!empty($aErrorUpdate['name'])) {echo 'error';}?>">
-        <label class="control-label" for="name">Identifiant</label>
+        <label class="control-label" for="name">Nom</label>
         <div class="controls">
             <input class="span6" id="name" name="school[name]" placeholder="Entrez le nom de l'&eacute;cole" type="text" value="<?php if (isset ($school['name'])){ echo $school['name']; } else if (isset($_POST['school']['name'])){echo $_POST['school']['name'];} ?>">
         </div>

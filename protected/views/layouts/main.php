@@ -33,13 +33,13 @@
             <div class="nav-collapse">
                 <ul class="nav">
                     <li class="active">
-                            <a href="<?php echo Yii::app()->baseUrl ?>/index.php">Accueil</a>
+			<a href="<?php echo Yii::app()->baseUrl ?>/index.php/school">&Eacute;coles</a>
                     </li>
-                    <li><a href="<?php echo Yii::app()->baseUrl ?>/index.php/school">&Eacute;coles</a></li>
                     <?php if (!isset($_SESSION['id']))
                     { ?>
                         <li><a href="<?php echo Yii::app()->baseUrl ?>/index.php/student/create">Inscription</a></li>
                     <?php } else { ?>
+			<li><a href="<?php echo Yii::app()->baseUrl ?>/index.php/student/view/<?php echo $_SESSION['id'] ?>"><?php echo $_SESSION['login'] ?></a></li>
                         <li><a href="<?php echo Yii::app()->baseUrl ?>/index.php/student/update/<?php echo $_SESSION['id'] ?>">Modification du profil</a></li>
                     <?php } ?>
                 </ul>
@@ -67,9 +67,6 @@
                 'links'=>$this->breadcrumbs,
         )); ?><!-- breadcrumbs -->
     <?php endif?>
-    <?php if (isset($_SESSION['id'])){ ?>
-        <h4>Bienvenue, <?php echo $_SESSION['login'] ?></h4>
-    <?php } ?>
     <div class="container">
         <div class="row-fluid">
             <div class="row-fluid">

@@ -23,7 +23,6 @@ class SchoolDAO
 		return $command->queryAll();
     }
 
-
     public function insertSchool($aSchoolData)
     {
         $sql = "INSERT INTO `aybox`.`school` (`name`, `date_add`, `date_update`, `description`, `picture_id`)

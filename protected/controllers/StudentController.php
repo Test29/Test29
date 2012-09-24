@@ -20,7 +20,6 @@ class StudentController extends Controller
     public function actionCreate(){
         $aErrorCreate = array();
         if (isset($_POST['student'])) {
-                // si on a récupéré des données projet depuis un formulaire
                 $studentDAO = new StudentDAO();
                 if (isset($_POST['student']['status']))
                 {
