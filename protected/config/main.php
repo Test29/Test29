@@ -74,7 +74,7 @@ return array(
 			'connectionString' => 'mysql:host=localhost;dbname=aybox',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => 'anbazin',
+			'password' => '',
 			'charset' => 'utf8',
 		),
 		

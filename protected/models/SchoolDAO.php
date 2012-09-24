@@ -24,22 +24,16 @@ class SchoolDAO
 
     public function updateSchool($aSchoolData)
     {
-        $sql = "UPDATE `student` SET `login`=:login,
-        `password`=:password,
-        `dob`=:dob,
-        `email`=:email,
-        `gender`=:gender,
-        `status`=:status
+        $sql = "UPDATE `school` SET `name`=:name,
+        `date_update`=:date_update,
+        `description`=:description
         WHERE `id`=:id;";
         $connection=Yii::app()->db;
         $command=$connection->createCommand($sql);
-        return $command->execute(array(':login'=>$aStudentData['login'],
-        ':password'=>$aStudentData['password'],
-        ':dob'=>$aStudentData['dob'],
-        ':email'=>$aStudentData['email'],
-        ':gender'=>$aStudentData['gender'],
-        ':status'=>$aStudentData['status'],
-        ':id'=>$_SESSION['id']));
+        return $command->execute(array(':name'=>$aSchoolData['name'],
+        ':date_update'=>date("Y-m-d H:i:s"),
+        ':description'=>$aSchoolData['description'],
+        ':id'=>$aSchoolData['id']));
     }
 
     public function validateSchool($aPost)
@@ -61,6 +55,13 @@ class SchoolDAO
         $connection=Yii::app()->db;
         $command=$connection->createCommand($sql);
         return $command->execute(array(':id'=>$idSchool));
+    }
+    
+    public function getSchool($idSchool)
+    {
+        $sql = "SELECT * FROM `school` WHERE `id`='".$idSchool."'";
+        $command = Yii::app()->db->createCommand($sql);
+        return $command->queryRow();
     }
 }
 

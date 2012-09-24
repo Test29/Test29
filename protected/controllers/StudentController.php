@@ -121,6 +121,9 @@ class StudentController extends Controller
             }
             $this->redirect(array('/school/index'));
         }
+        else {
+            $this->redirect(array('student/connect'));
+        }
     }
 
     public function actionConnect()
