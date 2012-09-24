@@ -29,8 +29,14 @@ $this->breadcrumbs=array(
 </div>
 <div class="row-fluid">
     <div class="span6">
-        <h4>Les news de mon école</h4>
-        <h4>Mes articles</h4>
+        <h4><?php echo CHtml::link('Voir le journal de la promotion', array('/promotion/view','id'=>$student[0]['promotion_id'])) ?>
+        </h4><br /><br />
+        <h4>Les articles de <?php echo $student['0']['login']; ?></h4>
+          <?php foreach ($articles as $key => $article) { ?>
+            <div class="article">
+                <h5><?php echo $article['name']; ?></h5>
+            </div>
+        <?php } ?>
     </div>
     <div class="span6">
          <div class="well">
