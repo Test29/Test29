@@ -1,0 +1,10 @@
+
+/assets
+protected/runtime/
+themes/classic/views/
+pr
+
+# Misc
+*.project
+
+/nbproject
