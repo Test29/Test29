@@ -15,6 +15,13 @@ class PromotionDAO
 	$command = Yii::app()->db->createCommand($sql);
 	return $command->queryAll();
     }
+    
+    public function findAllArticles($id)
+    {
+	$sql = "SELECT * FROM `article` JOIN student ON article.student_id=student.id WHERE student.promotion_id=$id";
+	$command = Yii::app()->db->createCommand($sql);
+	return $command->queryAll();
+    }
 
     public function insertPromotion($aPromotionData)
     {

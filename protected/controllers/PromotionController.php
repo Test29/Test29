@@ -6,8 +6,9 @@ class PromotionController extends Controller
 	    $promotionDAO = new PromotionDAO();
 	    $promotion = $promotionDAO->findPromotion($id);
 	    $students = $promotionDAO->findAllStudents($id);
+            $articles = $promotionDAO->findAllArticles($id);
 	    // on rend la vue
-	    $this->render('view', array('promotion'=>$promotion,'students'=>$students));
+	    $this->render('view', array('promotion'=>$promotion,'students'=>$students, 'articles'=>$articles));
     }
 
     public function actionCreate()

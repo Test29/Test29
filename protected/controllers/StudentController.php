@@ -6,10 +6,12 @@ class StudentController extends Controller
     public function actionView($id){
         if (isset($_SESSION['id']))
         {
-	    $studentDAO = new StudentDAO();
-	    $student = $studentDAO->findStudent($_GET['id']);
-	    // on rend la vue
-	    $this->render('view', array('student'=>$student));
+                $studentId = $_GET['id']; 
+                $studentDAO = new StudentDAO();
+                $student = $studentDAO->findStudent($studentId);
+                $articles = $studentDAO->findAllArticles($id);
+                // on rend la vue
+                $this->render('view', array('student'=>$student,'articles'=>$articles));
         }
         else {
 	    $this->redirect(array('student/connect'));

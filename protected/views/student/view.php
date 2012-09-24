@@ -12,16 +12,6 @@ $this->breadcrumbs=array(
 	'Students'=>array('index')
 );
 ?>
-<?php if(Yii::app()->user->hasFlash('info')): ?>
-<div class="alert alert-success">
-    <?php echo Yii::app()->user->getFlash('info'); ?>
-</div>
-<?php endif; ?>
-<?php if(Yii::app()->user->hasFlash('error')): ?>
-<div class="alert alert-error">
-    <?php echo Yii::app()->user->getFlash('error'); ?>
-</div>
-<?php endif; ?>
 <div class="row-fluid">
     <div class="span6">
         <div class="well">
@@ -33,14 +23,20 @@ $this->breadcrumbs=array(
         <div class="well">
             <h5>Né le : <?php echo $student['0']['dob'] ?></h5>
             <h5><?php echo $student['0']['email'] ?></h5>
-            <h5><?php echo $status; ?></h5>
+            <h5><?php echo $status; ?></h5>            
         </div>
     </div>
 </div>
 <div class="row-fluid">
     <div class="span6">
-        <h4>Les news de mon école</h4>
-        <h4>Mes articles</h4>
+        <h4><?php echo CHtml::link('Voir le journal de la promotion', array('/promotion/view','id'=>$student[0]['promotion_id'])) ?>
+        </h4><br /><br />
+        <h4>Les articles de <?php echo $student['0']['login']; ?></h4>
+          <?php foreach ($articles as $key => $article) { ?>
+            <div class="article">
+                <h5><?php echo $article['name']; ?></h5>
+            </div>
+        <?php } ?>
     </div>
     <div class="span6">
          <div class="well">
@@ -48,5 +44,5 @@ $this->breadcrumbs=array(
              <button class="btn btn-primary">Envoyer un message</button>
         </div>
     </div>
-</div>
+</div>     
 

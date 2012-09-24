@@ -9,6 +9,8 @@ $this->breadcrumbs=array(
 <small><?php echo $school['0']['description']; ?></small>
 </div>
 
+<button class="btn btn-success">Nouvelle promotion</button><br /><br />
+
 <table class="table table-striped space-table">
     <thead>
             <tr>   					
