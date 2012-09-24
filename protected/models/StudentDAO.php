@@ -2,9 +2,9 @@
 
 class StudentDAO
 {
-    public function findAllStudent($filter=array(), $sort=array())
+    public function findStudent($id)
     {
-        $sql = "SELECT * FROM `student`";
+        $sql = "SELECT * FROM `student` WHERE id=$id";
         $command = Yii::app()->db->createCommand($sql);
         return $command->queryAll();
     }

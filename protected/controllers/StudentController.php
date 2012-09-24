@@ -2,24 +2,15 @@
 
 class StudentController extends Controller
 {
-    public function actionIndex(){
-        if (isset($_SESSION['id']))
-        {
-                $studentDAO = new StudentDAO();
-                // on rend la vue
-                $this->render('index');
-        }
-        else {
-                $this->redirect(array('student/connect'));
-        }
-    }
-
+ 
     public function actionView($id){
         if (isset($_SESSION['id']))
         {
+                $studentId = $_GET['id']; 
                 $studentDAO = new StudentDAO();
+                $student = $studentDAO->findStudent($studentId);
                 // on rend la vue
-                $this->render('view');
+                $this->render('view', array('student'=>$student));
         }
         else {
                 $this->redirect(array('student/connect'));

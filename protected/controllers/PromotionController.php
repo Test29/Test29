@@ -3,9 +3,11 @@
 class PromotionController extends Controller
 {
 	public function actionView($id){
-		$promotionDAO = new PromotionDAO();	
+		$promotionDAO = new PromotionDAO();
+                $promotion = $promotionDAO->findPromotion($id);
+                $students = $promotionDAO->findAllStudents($id);
 		// on rend la vue
-		$this->render('view');
+		$this->render('view', array('promotion'=>$promotion,'students'=>$students));
 	}
 	
 	public function actionCreate($id){

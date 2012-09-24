@@ -3,11 +3,25 @@ $this->breadcrumbs=array(
 	'Schools'=>array('index')	
 );
 ?>
-<h2><?php echo $school['0']['name']; ?></h2>
-        <h4><?php echo $school['0']['date_add']; ?></h4>
-        <h4><?php echo $school['0']['date_update']; ?></h4>
-        <h4><?php echo $school['0']['description']; ?></h4>
 
-<?php foreach ($promotion as $key => $promotion) { ?>
-	<h3><?php echo CHtml::link($promotion['name'], array('/promotion/view', 'id'=>$promotion['id'])); ?></h3>			
-<?php } ?>
+<div class="well">
+<h2><?php echo $school['0']['name']; ?></h2>
+<small><?php echo $school['0']['description']; ?></small>
+</div>
+
+<table class="table table-striped space-table">
+    <thead>
+            <tr>   					
+            <th>Promotion</th>  			
+            </tr>
+    </thead>		
+    <tbody>			
+    <?php foreach ($promotion as $key => $promotion) { ?>
+            <td><h5><?php echo CHtml::link($promotion['name'], array('/promotion/view', 'id'=>$promotion['id'])); ?></h5></td>
+           	
+    </tbody>
+    <?php } ?>			
+</table>
+   
+
+

@@ -1,27 +1,22 @@
+<?php if($student['0']['gender'] == 'male') { $gender = '../../images/male.png'; }
+if($student['0']['gender'] == 'female') { $gender = '../../images/female.png'; } ?>
 <?php
 $this->breadcrumbs=array(
-	'Students'=>array('index'),
-	$model->id,
-);
-
-$this->menu=array(
-	array('label'=>'List Student', 'url'=>array('index')),
-	array('label'=>'Create Student', 'url'=>array('create')),
-	array('label'=>'Update Student', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete Student', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage Student', 'url'=>array('admin')),
+	'Students'=>array('index')
 );
 ?>
+<div class="row-fluid">
+    <div class="span6">
+        <div class="well">
+            <h4><?php echo $student['0']['login'] ?><img src="<?php echo $gender; ?>"/></h4>
+        </div>
+    </div>
+    <div class="span6">
+        <div class="well">
+            <h5><?php echo $student['0']['dob'] ?></h5>
+            <h5><?php echo $student['0']['email'] ?></h5>
+            <h5><?php echo $student['0']['status'] ?></h5>            
+        </div>
+    </div>
+</div>
 
-<h1>View Student #<?php echo $model->id; ?></h1>
-
-<?php $this->widget('zii.widgets.CDetailView', array(
-	'data'=>$model,
-	'attributes'=>array(		
-		'login',
-		'password',
-		'dob',
-		'email',	
-		'gender',
-		'status', ),
-)); ?>
