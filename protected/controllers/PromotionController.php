@@ -2,29 +2,89 @@
 
 class PromotionController extends Controller
 {
-	public function actionView($id){
-		$promotionDAO = new PromotionDAO();
-                $promotion = $promotionDAO->findPromotion($id);
-                $students = $promotionDAO->findAllStudents($id);
-		// on rend la vue
-		$this->render('view', array('promotion'=>$promotion,'students'=>$students));
+    public function actionView($id){
+	    $promotionDAO = new PromotionDAO();
+	    $promotion = $promotionDAO->findPromotion($id);
+	    $students = $promotionDAO->findAllStudents($id);
+	    // on rend la vue
+	    $this->render('view', array('promotion'=>$promotion,'students'=>$students));
+    }
+
+    public function actionCreate(){
+	if (isset($_SESSION['id']))
+	   {
+	       $aErrorCreate = array();
+	       if (isset($_POST['promotion'])) {
+		    $promotionDAO = new PromotionDAO();
+		    $aErrorCreate = $promotionDAO->validatePromotion($_POST['promotion']);
+		    if (empty($aErrorCreate)) {
+			$ok = $promotionDAO->insertPromotion($_POST['promotion']);
+			if ($ok) {
+			    // message utilisateur
+			    Yii::app()->user->setFlash('info','La promotion a bien été crée');
+			    $this->redirect(array('/student/view'));
+			}
+		    }
+	       }
+	       //var_dump($aErrorCreate) or die();
+	       $this->render('create',array(
+			       'aErrorCreate' => $aErrorCreate,));
 	}
-	
-	public function actionCreate($id){
-		$promotionDAO = new PromotionDAO();	
-		// on rend la vue
-		$this->render('create');
+	else
+	{
+	    $this->redirect(array('/student/connect'));
 	}
-	
-	public function actionUpdate($id){
-		$promotionDAO = new PromotionDAO();	
-		// on rend la vue
-		$this->render('update');
-	}
-	
-	public function actionDelete($id){
-		$promotionDAO = new PromotionDAO();	
-		// on rend la vue
-		$this->render('index');
-	}
+    }
+
+    public function actionUpdate(){
+        if (isset($_SESSION['id']))
+        {
+            $promotionDAO = new PromotionDAO();
+            if (isset($_GET['id'])) {
+                $promotion = $promotionDAO->getPromotion(intval($_GET['id']));
+                if (!$promotion) {
+                        Yii::app()->user->setFlash('error','Cette promotion n\'existe pas');
+                        $this->redirect(array('/student/view'));
+                }
+                $this->render('update', array('promotion'=>$promotion,));
+                //var_dump($promotion) or die();
+            }
+            //if there is at least one error
+            else if (isset($_POST['promotion'])) {
+                $aErrorUpdate = $promotionDAO->validatePromotion($_POST['promotion']);
+                if (empty($aErrorUpdate)) {
+                    $ok = $promotionDAO->updatePromotion($_POST['promotion']);
+                    $promotionDAO->setSession($_SESSION['login']);
+                    // message utilisateur
+                    Yii::app()->user->setFlash('info','La promotion a bien été mis à jour');
+                    $this->redirect(array('/student/view'));
+                }
+                $this->render('update', array('aErrorUpdate' => $aErrorUpdate,));
+            }
+        }
+        else {
+            $this->redirect(array('/student/connect'));
+        }
+    }
+
+    public function actionDelete()
+    {
+        if (isset($_SESSION['id']))
+        {
+            $promotionDAO = new PromotionDAO();
+            $promotion = $promotionDAO->deletePromotion();
+            if($promotion == 0) {
+                Yii::app()->user->setFlash('error','La promotion n\'a pas été supprimé');
+            }
+            else {
+                //on redirige la vue
+                Yii::app()->user->setFlash('info','La promotion a bien été supprimé');
+            }
+            $this->redirect(array('/student/view'));
+        }
+        else {
+            $this->redirect(array('/student/connect'));
+        }
+    }
+
 }
