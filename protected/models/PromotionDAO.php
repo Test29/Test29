@@ -8,14 +8,14 @@ class PromotionDAO
 	$command = Yii::app()->db->createCommand($sql);
 	return $command->queryAll();
     }
-        
+
     public function findAllStudents($id)
     {
 	$sql = "SELECT * FROM `student` WHERE student.promotion_id=$id";
 	$command = Yii::app()->db->createCommand($sql);
 	return $command->queryAll();
     }
-    
+
     public function insertPromotion($aPromotionData)
     {
         $sql = "INSERT INTO `aybox`.`promotion` (`name`, `year`, `date_add`, `date_update`, `school_id`)
@@ -47,7 +47,7 @@ class PromotionDAO
     {
         $aError= array();
         foreach ($aPost as $key => $value) {
-            if (empty($value))
+            if (empty($value) && $key != 'id')
             {
                 $aError[$key]=  'Le champ '.$key.' est vide';
             }
@@ -63,7 +63,7 @@ class PromotionDAO
         $command=$connection->createCommand($sql);
         return $command->execute(array(':id'=>$idPromotion));
     }
-    
+
     public function getPromotion($idPromotion)
     {
         $sql = "SELECT * FROM `promotion` WHERE `id`='".$idPromotion."'";
