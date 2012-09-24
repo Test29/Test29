@@ -27,7 +27,7 @@ class ArticleController extends Controller
 			if ($ok) {
 			    // message utilisateur
 			    Yii::app()->user->setFlash('info','L\'article a bien été crée');
-			    $this->redirect(array('/student/view/'.$_SESSION['id']));
+			    $this->redirect(array('/student/'.$_SESSION['id']));
 			}
 		    }
 	       }
@@ -50,7 +50,7 @@ class ArticleController extends Controller
                 $article = $articleDAO->getArticle(intval($_GET['id']));
                 if (!$article) {
                         Yii::app()->user->setFlash('error','L\'article n\'existe pas');
-                        $this->redirect(array('/student/view/'.$_SESSION['id']));
+                        $this->redirect(array('/student/'.$_SESSION['id']));
                 }
                 $this->render('update', array('article'=>$article,));
                 //var_dump($article) or die();
@@ -62,7 +62,7 @@ class ArticleController extends Controller
                     $ok = $articleDAO->updateArticle($_POST['article']);
                     // message utilisateur
                     Yii::app()->user->setFlash('info','L\'article a bien été mis à jour');
-                    $this->redirect(array('/student/view/'.$_SESSION['id']));
+                    $this->redirect(array('/student/'.$_SESSION['id']));
                 }
                 $this->render('update', array('aErrorUpdate' => $aErrorUpdate,));
             }
@@ -77,7 +77,7 @@ class ArticleController extends Controller
         if (isset($_SESSION['id']))
         {
             $articleDAO = new ArticleDAO();
-            $article = $articleDAO->deleteArticle();
+            $article = $articleDAO->deleteArticle($_GET['id']);
             if($article == 0) {
                 Yii::app()->user->setFlash('error','L\'article n\'a pas été supprimé');
             }
@@ -85,7 +85,7 @@ class ArticleController extends Controller
                 //on redirige la vue
                 Yii::app()->user->setFlash('info','L\'article a bien été supprimé');
             }
-            $this->redirect(array('/student/view/'.$_SESSION['id']));
+            $this->redirect(array('/student/'.$_SESSION['id']));
         }
         else {
             $this->redirect(array('/student/connect'));

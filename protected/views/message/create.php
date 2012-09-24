@@ -1,7 +1,7 @@
 <h1>Envoyer un message</h1>
 <form id="form" method="post" class="well form-horizontal" action="create">
     <div class="control-group <?php if (!empty($aErrorCreate['content'])) {echo 'error';}?>">
-        <label for="description" class="control-label">Message</label>
+        <label for="content" class="control-label">Message</label>
         <div class="controls">
             <textarea id="content" class="span6" name="message[content]" placeholder="Entrez le texte du message"><?php if (isset($_POST['message']['content'])){echo $_POST['message']['content'];} ?></textarea>
         </div>
@@ -12,7 +12,7 @@
                 <?php $this->widget('bootstrap.widgets.TbButton',
                         array('buttonType'=>'submit',
                               'icon'=>'ok white',
-                              'label'=>'Créer',
+                              'label'=>'Envoyer',
                               'type'=>'primary',
                               'size'=>'large'));
                 ?>

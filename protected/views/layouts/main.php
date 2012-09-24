@@ -46,8 +46,9 @@
 				<b class="caret"></b>
 			    </a>
 			    <ul class="dropdown-menu">
-				<li><a href="<?php echo Yii::app()->baseUrl ?>/index.php/student/view/<?php echo $_SESSION['id'] ?>"><i class="icon-user"></i>&nbsp;<?php echo $_SESSION['login'] ?></a></li>
+				<li><a href="<?php echo Yii::app()->baseUrl ?>/index.php/student/<?php echo $_SESSION['id'] ?>"><i class="icon-user"></i>&nbsp;<?php echo $_SESSION['login'] ?></a></li>
 				<li><a href="<?php echo Yii::app()->baseUrl ?>/index.php/student/update/<?php echo $_SESSION['id'] ?>"><i class="icon-wrench"></i>&nbsp;Modification du profil</a></li>
+				<li><a href="<?php echo Yii::app()->baseUrl ?>/index.php/student/delete"><i class="icon-remove"></i>&nbsp;Supprimer mon profil</a></li>
 			    </ul>
 			</li>
                     <?php } ?>

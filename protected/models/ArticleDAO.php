@@ -2,12 +2,12 @@
 
 class ArticleDAO
 {
-	public function findAllArticle($filter=array(), $sort=array())
+    public function findAllArticle($filter=array(), $sort=array())
     {
-		$sql = "SELECT * FROM `article`";
-		$command = Yii::app()->db->createCommand($sql);
-		return $command->queryAll();
-	}
+	$sql = "SELECT * FROM `article`";
+	$command = Yii::app()->db->createCommand($sql);
+	return $command->queryAll();
+    }
 
     public function insertArticle($aArticleData)
     {

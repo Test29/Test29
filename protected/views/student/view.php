@@ -39,8 +39,10 @@ $this->breadcrumbs=array(
 </div>
 <div class="row-fluid">
     <div class="span6">
+	<?php if ($_SESSION['promotion_id'] != 1){ ?>
         <h4><?php echo CHtml::link('Voir le journal de la promotion', array('/promotion/view','id'=>$student[0]['promotion_id'])) ?>
         </h4><br /><br />
+	<?php } ?>
         <h4>Les articles de <?php echo $student['0']['login']; ?></h4>
           <?php foreach ($articles as $key => $article) { ?>
             <div class="article">
@@ -51,7 +53,9 @@ $this->breadcrumbs=array(
     <div class="span6">
          <div class="well">
              <h4>Aucun nouveau message</h4><h5>Voir la liste de mes camarades</h5>
+	     <?php if ($_SESSION['id'] != $_GET['id']){ ?>
              <button class="btn btn-primary">Envoyer un message</button>
+	     <?php } ?>
         </div>
     </div>
 </div>

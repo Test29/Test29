@@ -24,7 +24,7 @@ class PromotionController extends Controller
 			if ($ok) {
 			    // message utilisateur
 			    Yii::app()->user->setFlash('info','La promotion a bien été crée');
-			    $this->redirect(array('/student/view/'.$_SESSION['id']));
+			    $this->redirect(array('/student/'.$_SESSION['id']));
 			}
 		    }
 	       }
@@ -47,7 +47,7 @@ class PromotionController extends Controller
                 $promotion = $promotionDAO->getPromotion(intval($_GET['id']));
                 if (!$promotion) {
                         Yii::app()->user->setFlash('error','Cette promotion n\'existe pas');
-                        $this->redirect(array('/student/view/'.$_SESSION['id']));
+                        $this->redirect(array('/student/'.$_SESSION['id']));
                 }
                 $this->render('update', array('promotion'=>$promotion,));
                 //var_dump($promotion) or die();
@@ -59,7 +59,7 @@ class PromotionController extends Controller
                     $ok = $promotionDAO->updatePromotion($_POST['promotion']);
                     // message utilisateur
                     Yii::app()->user->setFlash('info','La promotion a bien été mis à jour');
-                    $this->redirect(array('/student/view/'.$_SESSION['id']));
+                    $this->redirect(array('/student/'.$_SESSION['id']));
                 }
                 $this->render('update', array('aErrorUpdate' => $aErrorUpdate,));
             }
@@ -74,7 +74,7 @@ class PromotionController extends Controller
         if (isset($_SESSION['id']))
         {
             $promotionDAO = new PromotionDAO();
-            $promotion = $promotionDAO->deletePromotion();
+            $promotion = $promotionDAO->deletePromotion($_GET['id']);
             if($promotion == 0) {
                 Yii::app()->user->setFlash('error','La promotion n\'a pas été supprimé');
             }
@@ -82,7 +82,7 @@ class PromotionController extends Controller
                 //on redirige la vue
                 Yii::app()->user->setFlash('info','La promotion a bien été supprimé');
             }
-            $this->redirect(array('/student/view/'.$_SESSION['id']));
+            $this->redirect(array('/student/'.$_SESSION['id']));
         }
         else {
             $this->redirect(array('/student/connect'));

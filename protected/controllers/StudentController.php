@@ -6,7 +6,7 @@ class StudentController extends Controller
     public function actionView($id){
         if (isset($_SESSION['id']))
         {
-                $studentId = $_GET['id']; 
+                $studentId = $_GET['id'];
                 $studentDAO = new StudentDAO();
                 $student = $studentDAO->findStudent($studentId);
                 $articles = $studentDAO->findAllArticles($id);
@@ -42,8 +42,9 @@ class StudentController extends Controller
                     $ok = $studentDAO->insertStudent($_POST['student']);
                     if ($ok) {
                         // message utilisateur
+			$studentDAO->setSession($_POST['student']['login']);
                         Yii::app()->user->setFlash('info','Votre compte a bien été crée');
-                        $this->redirect(array('/school/index'));
+                        $this->redirect(array('/student/'.$_SESSION['id']));
                     }
                 }
         }
@@ -59,7 +60,7 @@ class StudentController extends Controller
                 $student = $studentDAO->getStudent($_SESSION['id']);
                 if (!$student) {
                         Yii::app()->user->setFlash('error','Cette personne n\'existe pas');
-                        $this->redirect(array('/school/index'));
+                        $this->redirect(array('/student/'.$_SESSION['id']));
                 }
                 $this->render('update', array('student'=>$student,));
                 //var_dump($student) or die();
@@ -87,7 +88,7 @@ class StudentController extends Controller
                     $studentDAO->setSession($_SESSION['login']);
                     // message utilisateur
                     Yii::app()->user->setFlash('info','Votre profil a bien été mis à jour');
-                    $this->redirect(array('/school/index'));
+                    $this->redirect(array('/student/'.$_SESSION['id']));
                 }
                 $this->render('update', array('aErrorUpdate' => $aErrorUpdate,));
             }
@@ -105,12 +106,14 @@ class StudentController extends Controller
             $student = $studentDAO->deleteStudent();
             if($student == 0) {
                 Yii::app()->user->setFlash('error','Votre profil n\'a pas été supprimé');
+		$this->redirect(array('/student/'.$_SESSION['id']));
             }
             else {
                 //on redirige la vue
                 Yii::app()->user->setFlash('info','Votre profil a bien été supprimé');
+		$studentDAO->sessionDelete();
+		$this->redirect(array('/student/connect'));
             }
-            $this->redirect(array('/school/index'));
         }
         else {
             $this->redirect(array('student/connect'));
@@ -121,22 +124,22 @@ class StudentController extends Controller
     {
         if (isset($_POST['connect']))
         {
-                $studentDAO = new StudentDAO();
-                $aLogin = $studentDAO->getLogin($_POST['connect']['login']);
-                $aMdp = $studentDAO->getPass($_POST['connect']['login']);
-                if (($_POST['connect']['login']!= $aLogin['login']) || ($_POST['connect']['password']!= $aMdp['password']))
-                {
-                        $this->render('connect');
-                }
-                else
-                {
-                        $studentDAO->setSession($aLogin['login']);
-                        $this->redirect(array('/school/index'));
-                }
+	    $studentDAO = new StudentDAO();
+	    $aLogin = $studentDAO->getLogin($_POST['connect']['login']);
+	    $aMdp = $studentDAO->getPass($_POST['connect']['login']);
+	    if (($_POST['connect']['login']!= $aLogin['login']) || ($_POST['connect']['password']!= $aMdp['password']))
+	    {
+		    $this->render('connect');
+	    }
+	    else
+	    {
+		    $studentDAO->setSession($aLogin['login']);
+		    $this->redirect(array('/school/index'));
+	    }
         }
         else
         {
-                $this->render('connect');
+	    $this->render('connect');
         }
     }
 
@@ -144,9 +147,9 @@ class StudentController extends Controller
     {
         if (isset($_SESSION['id']))
         {
-                $studentDAO = new StudentDAO();
-                $studentDAO->sessionDelete();
-                $this->redirect(array('/site/index'));
+	    $studentDAO = new StudentDAO();
+	    $studentDAO->sessionDelete();
+	    $this->redirect(array('/site/index'));
         }
     }
 

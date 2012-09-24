@@ -1,7 +1,7 @@
 <?php
 $this->breadcrumbs=array(
 	'Promotions'=>array('index'),
-	
+
 );
 ?>
 <div class="well">
@@ -11,10 +11,10 @@ $this->breadcrumbs=array(
     <small>Année :<?php echo $promotion['0']['year']; ?>
 </small>
 </div>
-
+<?php if ($_SESSION['right'] == 'admin' || $_SESSION['right'] == 'responsable'){ ?>
 <button class="btn btn-info">Modifier promotion</button>
 <button class="btn btn-danger">Supprimer promotion</button><br /><br />
-
+<?php } ?>
 <div class="row-fluid">
     <div class="span10">
         <h3>Actualités</h3>
@@ -29,15 +29,16 @@ $this->breadcrumbs=array(
     <div class="span2">
         <table class="table table-striped space-table">
          <thead>
-                 <tr>   					
-                 <th>Etudiants</th>  			
+                 <tr>
+                 <th>Etudiants</th>
                  </tr>
-         </thead>		
-         <tbody>			
+         </thead>
+         <tbody>
          <?php foreach ($students as $key => $student) { ?>
-                 <td><h5><?php echo CHtml::link($student['login'], array('/student/view', 'id'=>$student['id'])); ?></h5></td>
-
-         </tbody>
-         <?php } ?>			
+	     <?php if ($_SESSION['id'] != $student['id']){ ?>
+             <td><h5><?php echo CHtml::link($student['login'], array('/student/view', 'id'=>$student['id'])); ?></h5></td>
+	     <?php } ?>
+	</tbody>
+         <?php } ?>
      </table>
     </div>
