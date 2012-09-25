@@ -29,7 +29,7 @@ class MessageController extends Controller
 		     $ok = $messageDAO->insertMessage($_POST['message']);
 		     if ($ok) {
 			 // message utilisateur
-			 Yii::app()->user->setFlash('info','La message a bien été crée');
+			 Yii::app()->user->setFlash('info','La message a bien été envoyé');
 			 $this->redirect(array('/student/'.$_SESSION['id']));
 		     }
 		 }

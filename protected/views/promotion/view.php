@@ -6,12 +6,12 @@ $this->breadcrumbs=array(
 ?>
 <div class="well">
     <h3><?php echo $promotion['0']['school']; ?></h3>
-    <?php if ($_SESSION['right'] == 'student' || $_SESSION['right'] == 'responsable'){ ?>
+    <?php if (($_SESSION['right'] == 'student' || $_SESSION['right'] == 'responsable') && ($_SESSION['promotion_id'] == 1)){ ?>
     <?php $this->widget('bootstrap.widgets.TbButton', array(
     'label'=>'Rejoindre promotion',
     'type'=>'success',
     'size'=>'medium',
-    'url'=>array('/promotion/delete/'.$promotion['0']['id']),
+    'url'=>array('/promotion/join/'.$promotion['0']['id']),
     'htmlOptions'=>array('confirm'=> 'Etes vous sûr de vouloir rejoindre cette promotion ?'),
     )); ?>
     <?php } ?>

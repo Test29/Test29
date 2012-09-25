@@ -62,7 +62,12 @@ $this->breadcrumbs=array(
                     
               } ?> 
 	     <?php if ($_SESSION['id'] != $_GET['id']){ ?>
-             <button class="btn btn-primary">Envoyer un message</button>
+             <?php $this->widget('bootstrap.widgets.TbButton', array(
+	    'label'=>'Envoyer un message',
+	    'type'=>'primary',
+	    'size'=>'medium',
+	    'url'=>array('/message/create/'.$_GET['id']),
+	    )); ?>
 	     <?php } ?>
         </div>
     </div>

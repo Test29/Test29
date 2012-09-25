@@ -89,4 +89,26 @@ class PromotionController extends Controller
         }
     }
 
+    public function actionJoin()
+    {
+        if (isset($_SESSION['id']))
+        {
+            $promotionDAO = new PromotionDAO();
+	    $studentDAO = new StudentDAO();
+            $promotion = $promotionDAO->joinPromotion($_GET['id']);
+	    $aPromotion = $promotionDAO->getPromotion($_GET['id']);
+            if($promotion != 0) {
+		$studentDAO->setSession($_SESSION['login']);
+                Yii::app()->user->setFlash('info','Vous avez rejoint la promotion '.$aPromotion['name']);
+            }
+            else {
+                Yii::app()->user->setFlash('error','Vous n\'avez pas rejoint la promotion '.$aPromotion['name']);
+            }
+            $this->redirect(array('/student/'.$_SESSION['id']));
+        }
+        else {
+            $this->redirect(array('/student/connect'));
+        }
+    }
+
 }
