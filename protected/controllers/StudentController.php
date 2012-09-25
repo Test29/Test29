@@ -10,8 +10,9 @@ class StudentController extends Controller
                 $studentDAO = new StudentDAO();
                 $student = $studentDAO->findStudent($studentId);
                 $articles = $studentDAO->findAllArticles($id);
+                $messages = $studentDAO->findAllMessages($id);
                 // on rend la vue
-                $this->render('view', array('student'=>$student,'articles'=>$articles));
+                $this->render('view', array('student'=>$student,'articles'=>$articles, 'messages'=>$messages));
         }
         else {
 	    $this->redirect(array('student/connect'));

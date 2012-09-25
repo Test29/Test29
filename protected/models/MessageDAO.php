@@ -2,11 +2,19 @@
 
 class MessageDAO
 {
-    public function findAllMessage($filter=array(), $sort=array())
+    public function findAllMessages($id)
     {
-	$sql = "SELECT * FROM `message`";
+	$sql = "SELECT message.content, message.student_id_send FROM `message` JOIN student ON student.id=message.student_id_receive WHERE student.id=$id";
 	$command = Yii::app()->db->createCommand($sql);
 	return $command->queryAll();
+    }
+    
+    public function getLogin($id)
+    {
+	$sql = "SELECT login FROM student JOIN message ON message.student_id_send=student.id WHERE student.id=$id";
+	$command = Yii::app()->db->createCommand($sql);
+	return $command->queryAll();
+        
     }
 
     public function insertMessage($aMessageData)
