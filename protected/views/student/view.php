@@ -6,12 +6,8 @@ if($student['0']['status'] == 'single') { $status = 'Célibataire'; }
 if($student['0']['status'] == 'couple') { $status = 'En couple'; }
 if($student['0']['status'] == 'no') { $status = 'Non défini'; }
 ?>
-<?php
-
-$this->breadcrumbs=array(
-	'Students'=>array('index')
-);
-?>
+<?php $img_delete = '<i class=\'icon-trash\'></i>';
+$imghtml='<i class=\'icon-pencil\'></i>';?>
 <?php if(Yii::app()->user->hasFlash('info')): ?>
 <div class="alert alert-success">
     <?php echo Yii::app()->user->getFlash('info'); ?>
@@ -43,11 +39,18 @@ $this->breadcrumbs=array(
         <h4><?php echo CHtml::link('Voir le journal de la promotion', array('/promotion/view','id'=>$student[0]['promotion_id'])) ?>
         </h4><br /><br />
 	<?php } ?>
+
         <h4>Les articles de <?php echo $student['0']['login']; ?></h4>
           <?php foreach ($articles as $key => $article) { ?>
+	    <?php if ($_SESSION['id'] == $student['0']['id']){ ?>
             <div class="article">
+                <h5><?php echo $article['name']; ?>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo CHtml::link($imghtml, array('/article/update', 'id'=>$article['id'])); ?>&nbsp;<?php echo CHtml::link($img_delete, array('/article/delete', 'id'=>$article['id']), array('confirm'=> 'Etes vous sûr de vouloir supprimer cette article ?')); ?></h5>
+            </div>
+	    <?php } else {?>
+	    <div class="article">
                 <h5><?php echo $article['name']; ?></h5>
             </div>
+	    <?php } ?>
         <?php } ?>
     </div>
     <div class="span6">

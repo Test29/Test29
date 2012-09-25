@@ -1,8 +1,3 @@
-<?php
-$this->breadcrumbs=array(
-	'Students'=>array('index'),
-	'Create',
-); ?>
 
 <h1>Inscription</h1>
 <form id="form" method="post" class="well form-horizontal" action="create">

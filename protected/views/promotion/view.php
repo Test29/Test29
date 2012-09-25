@@ -37,6 +37,12 @@ $this->breadcrumbs=array(
 <div class="row-fluid">
     <div class="span10">
         <h3>Actualités</h3>
+	    <?php $this->widget('bootstrap.widgets.TbButton', array(
+	    'label'=>'Créer un article',
+	    'type'=>'primary',
+	    'size'=>'medium',
+	    'url'=>array('/article/create'),
+	    )); ?>
          <?php foreach ($articles as $key => $article) { ?>
             <div class="article">
                 <h5>Ecrit par : <?php echo $article['login']; ?> le <?php echo $article['date_add']; ?></h5>

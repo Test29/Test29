@@ -112,7 +112,7 @@ class StudentController extends Controller
                 //on redirige la vue
                 Yii::app()->user->setFlash('info','Votre profil a bien été supprimé');
 		$studentDAO->sessionDelete();
-		$this->redirect(array('/student/connect'));
+		$this->redirect(array('/site/index'));
             }
         }
         else {
