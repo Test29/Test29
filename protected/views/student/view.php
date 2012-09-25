@@ -54,7 +54,12 @@ $this->breadcrumbs=array(
          <div class="well">
              <h4>Aucun nouveau message</h4><h5>Voir la liste de mes camarades</h5>
 	     <?php if ($_SESSION['id'] != $_GET['id']){ ?>
-             <button class="btn btn-primary">Envoyer un message</button>
+             <?php $this->widget('bootstrap.widgets.TbButton', array(
+	    'label'=>'Envoyer un message',
+	    'type'=>'primary',
+	    'size'=>'medium',
+	    'url'=>array('/message/create/'.$_GET['id']),
+	    )); ?>
 	     <?php } ?>
         </div>
     </div>
