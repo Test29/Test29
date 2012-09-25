@@ -55,7 +55,15 @@ $imghtml='<i class=\'icon-pencil\'></i>';?>
     </div>
     <div class="span6">
          <div class="well">
-             <h4>Aucun nouveau message</h4><h5>Voir la liste de mes camarades</h5>
+             
+             <?php if($_SESSION['id'] == $student['0']['id'])                  
+             {
+                 
+                if(empty($messages)) { echo 'Aucun nouveau message'; }
+                else 
+                    { echo CHtml::link('Vous avez '.$messages[0]["COUNT('id')"].' nouveaux messages', array('/message/view','id'=>$_SESSION['id'])); } 
+                    
+              } ?> 
 	     <?php if ($_SESSION['id'] != $_GET['id']){ ?>
              <?php $this->widget('bootstrap.widgets.TbButton', array(
 	    'label'=>'Envoyer un message',
