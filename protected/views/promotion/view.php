@@ -6,14 +6,33 @@ $this->breadcrumbs=array(
 ?>
 <div class="well">
     <h3><?php echo $promotion['0']['school']; ?></h3>
-    <button class="btn btn-success">Rejoindre cette promotion</button>
+    <?php if ($_SESSION['right'] == 'student' || $_SESSION['right'] == 'responsable'){ ?>
+    <?php $this->widget('bootstrap.widgets.TbButton', array(
+    'label'=>'Rejoindre promotion',
+    'type'=>'success',
+    'size'=>'medium',
+    'url'=>array('/promotion/delete/'.$promotion['0']['id']),
+    'htmlOptions'=>array('confirm'=> 'Etes vous sûr de vouloir rejoindre cette promotion ?'),
+    )); ?>
+    <?php } ?>
     <h5><?php echo $promotion['0']['name']; ?></h5>
     <small>Année :<?php echo $promotion['0']['year']; ?>
 </small>
 </div>
 <?php if ($_SESSION['right'] == 'admin' || $_SESSION['right'] == 'responsable'){ ?>
-<button class="btn btn-info">Modifier promotion</button>
-<button class="btn btn-danger">Supprimer promotion</button><br /><br />
+<?php $this->widget('bootstrap.widgets.TbButton', array(
+    'label'=>'Modifier promotion',
+    'type'=>'info',
+    'size'=>'medium',
+    'url'=>array('/promotion/update/'.$promotion['0']['id']),
+    )); ?>
+    <?php $this->widget('bootstrap.widgets.TbButton', array(
+    'label'=>'Supprimer promotion',
+    'type'=>'danger',
+    'size'=>'medium',
+    'url'=>array('/promotion/delete/'.$promotion['0']['id']),
+    'htmlOptions'=>array('confirm'=> 'Etes vous sûr de vouloir supprimer cette promotion ?'),
+    )); ?>
 <?php } ?>
 <div class="row-fluid">
     <div class="span10">

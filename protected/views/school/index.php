@@ -17,7 +17,13 @@ $this->breadcrumbs=array(
 <?php endif; ?>
 <h1>Ecole</h1>
 <?php if ($_SESSION['right'] == 'admin' || $_SESSION['right'] == 'responsable'){ ?>
-<button class=" btn btn-success">Nouvelle école</button><br /><br />
+<?php $this->widget('bootstrap.widgets.TbButton', array(
+    'label'=>'Nouvelle école',
+    'type'=>'success',
+    'size'=>'medium',
+    'url'=>array('/school/create'),
+)); ?>
+<br /><br />
 <?php } ?>
 
 <?php foreach ($schools as $key => $school) { ?>
@@ -28,8 +34,19 @@ $this->breadcrumbs=array(
     <h3><?php echo CHtml::link($school['name'], array('view', 'id'=>$school['id'])); ?></h3>
     <p><?php echo $school['description']; ?></p>
     <?php if ($_SESSION['right'] == 'admin' || $_SESSION['right'] == 'responsable'){ ?>
-    <button class="btn btn-info">Modifier</button>
-    <button class="btn btn-danger">Supprimer</button>
+    <?php $this->widget('bootstrap.widgets.TbButton', array(
+    'label'=>'Modifier',
+    'type'=>'info',
+    'size'=>'medium',
+    'url'=>array('/school/update/'.$school['id']),
+    )); ?>
+    <?php $this->widget('bootstrap.widgets.TbButton', array(
+    'label'=>'Supprimer',
+    'type'=>'danger',
+    'size'=>'medium',
+    'url'=>array('/school/delete/'.$school['id']),
+    'htmlOptions'=>array('confirm'=> 'Etes vous sûr de vouloir supprimer cette école ?'),
+    )); ?>
     <?php } ?>
     </div>
     </li>
