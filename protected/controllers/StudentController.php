@@ -134,7 +134,7 @@ class StudentController extends Controller
 	    else
 	    {
 		    $studentDAO->setSession($aLogin['login']);
-		    $this->redirect(array('/school/index'));
+		    $this->redirect(array('/student/'.$_SESSION['id']));
 	    }
         }
         else

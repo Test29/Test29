@@ -15,7 +15,7 @@ class PromotionDAO
 	$command = Yii::app()->db->createCommand($sql);
 	return $command->queryAll();
     }
-    
+
     public function findAllArticles($id)
     {
 	$sql = "SELECT * FROM `article` JOIN student ON article.student_id=student.id WHERE student.promotion_id=$id";
@@ -69,6 +69,15 @@ class PromotionDAO
         $connection=Yii::app()->db;
         $command=$connection->createCommand($sql);
         return $command->execute(array(':id'=>$idPromotion));
+    }
+
+    public function joinPromotion($idPromotion)
+    {
+        $sql="UPDATE `student` SET `promotion_id`=:promotion_id WHERE `id`=:id;";
+        $connection=Yii::app()->db;
+        $command=$connection->createCommand($sql);
+        return $command->execute(array(':promotion_id'=>$idPromotion,
+	    ':id'=>$_SESSION['id']));
     }
 
     public function getPromotion($idPromotion)
