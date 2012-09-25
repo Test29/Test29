@@ -1,10 +1,3 @@
-<?php var_dump($messages) or die() ?>
-<?php
-$this->breadcrumbs=array(
-	'Messages'=>array('index'),
-	
-);
-?>
 
  <?php foreach ($messages as $key => $message) { ?>
             <div class="well">

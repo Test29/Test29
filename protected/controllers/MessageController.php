@@ -2,16 +2,16 @@
 
 class MessageController extends Controller
 {
-  
+
     public function actionView($id){
-            
+
 	    $messageDAO = new MessageDAO();
-            $messages = $messageDAO->findAllMessages($id); 
+            $messages = $messageDAO->findAllMessages($id);
             if (!empty($messages)) {
-			foreach ($messages as $key => $message) {
-			$login = $messageDAO->getgetLogin($id);
-			$message['login'] = $login;
-			$messages[$key] = $message;
+		foreach ($messages as $key => $message) {
+		$login = $messageDAO->getLogin($message['student_id_send']);
+		$messages[$key]['login'] = $login['login'];
+		$messageDAO->setRead($messages[$key]['id']);
             } }
             // on rend la vue
 	    $this->render('view', array('messages'=>$messages, 'login'=>$login));

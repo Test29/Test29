@@ -4,17 +4,16 @@ class MessageDAO
 {
     public function findAllMessages($id)
     {
-	$sql = "SELECT message.content, message.student_id_send FROM `message` JOIN student ON student.id=message.student_id_receive WHERE student.id=$id";
+	$sql = "SELECT message.id, message.content, message.student_id_send FROM `message` JOIN student ON student.id=message.student_id_receive WHERE student.id=$id";
 	$command = Yii::app()->db->createCommand($sql);
 	return $command->queryAll();
     }
-    
+
     public function getLogin($id)
     {
-	$sql = "SELECT login FROM student JOIN message ON message.student_id_send=student.id WHERE student.id=$id";
+	$sql = "SELECT login FROM student WHERE id=$id";
 	$command = Yii::app()->db->createCommand($sql);
-	return $command->queryAll();
-        
+	return $command->queryRow();
     }
 
     public function insertMessage($aMessageData)
@@ -29,6 +28,18 @@ class MessageDAO
         ':read'=>'no',
 	':student_id_receive'=>$aMessageData['id'],
 	':student_id_send'=>$_SESSION['id']));
+    }
+
+    public function setRead($idMessage)
+    {
+        $sql = "UPDATE `message` SET `read`=:read,
+        `date_read`=:date_read
+        WHERE `id`=:id;";
+        $connection=Yii::app()->db;
+        $command=$connection->createCommand($sql);
+        return $command->execute(array(':read'=>'yes',
+        ':date_read'=>date("Y-m-d H:i:s"),
+        ':id'=>$idMessage));
     }
 
     public function validateMessage($aPost)

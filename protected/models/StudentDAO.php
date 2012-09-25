@@ -15,10 +15,10 @@ class StudentDAO
 	$command = Yii::app()->db->createCommand($sql);
 	return $command->queryAll();
     }
-    
+
        public function findAllMessages($id)
     {
-	$sql = "SELECT COUNT('id') FROM `message` JOIN student ON student.id=message.student_id_receive WHERE student.id=$id";
+	$sql = "SELECT COUNT('id') FROM `message` JOIN student ON student.id=message.student_id_receive WHERE student.id=$id AND message.read = 'no'";
 	$command = Yii::app()->db->createCommand($sql);
 	return $command->queryAll();
     }
